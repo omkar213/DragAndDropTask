@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { TaskContext } from "./TaskContext";
 
 export const TaskProvider = ({ children }) => {
@@ -9,7 +9,13 @@ export const TaskProvider = ({ children }) => {
     if (task.trim() !== "") {
       const newTask = { id: Date.now(), text: task, status: "PENDING" };
       setTaskList((prev) => [newTask, ...prev]);
+      console.log(newTask);
     }
+  };
+
+  // delete Task from taskList
+  const deleteTask = (taskid) => {
+    setTaskList((prev) => prev.filter((prevTask) => prevTask.id !== taskid));
   };
 
   const updateTaskStatus = (taskid, newStatus) => {
@@ -21,12 +27,10 @@ export const TaskProvider = ({ children }) => {
     );
   };
 
-  useEffect(() => {
-    console.log("task List", taskList);
-  }, [taskList]);
-
   return (
-    <TaskContext.Provider value={{ taskList, addTask, updateTaskStatus }}>
+    <TaskContext.Provider
+      value={{ taskList, addTask, deleteTask, updateTaskStatus }}
+    >
       {children}
     </TaskContext.Provider>
   );

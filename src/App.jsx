@@ -10,7 +10,6 @@ function App() {
 
   function handleDragEnd(event) {
     const { active, over } = event;
-    console.log(active.id, over.id);
 
     if (!over) return;
 
