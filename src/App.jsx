@@ -20,9 +20,9 @@ function App() {
   }
 
   return (
-    <div className="w-full h-full flex flex-col gap-20 px-16">
+    <div className="w-full h-full flex flex-col gap-20 px-5 lg:px-16 overflow-x-hidden">
       <AddTasK />
-      <div className="grid grid-cols-2 gap-x-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-4 gap-y-4">
         <DndContext onDragEnd={handleDragEnd}>
           {Columns?.map((col) => {
             return <Column key={col.id} col={col} taskList={taskList} />;
